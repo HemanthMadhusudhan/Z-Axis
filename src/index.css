@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-zinc-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-700 hover:bg-gold rounded;
+}
+
+:root {
+  /* Colors - keeping CSS vars for vanilla usage where needed */
+  --color-black: #050505;
+  --color-dark-grey: #1a1a1a;
+  --color-light-grey: #e5e5e5;
+  --color-white: #ffffff;
+  --color-gold: #FFB800;
+  --color-gold-hover: #e0a300;
+
+  /* Typography */
+  --font-primary: 'Inter', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+}
+
+body {
+  @apply bg-zinc-50 text-zinc-900 transition-colors duration-300 antialiased font-body;
+}
+
+.dark body {
+  @apply bg-black text-white;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Custom Utilities via standard CSS alongside Tailwind */
+.btn {
+  @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded transition-all duration-300 uppercase tracking-wider;
+}
+
+.btn-primary {
+  @apply bg-gold text-black hover:bg-gold-hover hover:-translate-y-0.5;
+}
+
+.btn-outline {
+  @apply bg-transparent border-2 border-white text-white hover:bg-white hover:text-black;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-800 rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gold;
+}
