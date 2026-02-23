@@ -2,75 +2,125 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-zinc-50 text-zinc-900 transition-colors duration-300 antialiased font-body;
+
+        /* Custom selection color */
+        ::selection {
+            @apply bg-gold/30 text-gold;
+        }
+    }
+
+    .dark body {
+        @apply bg-obsidian text-slate-200;
+    }
+
+    #root {
+        min-height: 100vh;
+    }
+}
+
+@layer components {
+
+    /* Premium Buttons */
+    .btn {
+        @apply relative inline-flex items-center justify-center px-8 py-3.5 font-semibold rounded-none transition-all duration-500 uppercase tracking-[0.15em] text-sm overflow-hidden z-10 transform-gpu;
+    }
+
+    .btn::before {
+        content: '';
+        @apply absolute inset-0 z-[-1] transition-transform duration-500 origin-left transform-gpu;
+    }
+
+    .btn-primary {
+        @apply bg-gold text-obsidian font-bold;
+    }
+
+    .btn-primary:hover {
+        @apply text-white;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+
+    .btn-primary::before {
+        @apply bg-obsidian scale-x-0;
+    }
+
+    .btn-primary:hover::before {
+        @apply scale-x-100;
+    }
+
+    .btn-outline {
+        @apply bg-transparent border border-slate-500 text-slate-300;
+    }
+
+    .btn-outline:hover {
+        @apply text-gold border-gold;
+    }
+
+    .btn-outline::before {
+        @apply bg-glass scale-x-0;
+    }
+
+    .btn-outline:hover::before {
+        @apply scale-x-100;
+    }
+
+    /* Glassmorphism Panel - Optimized for Performance & 3D Depth */
+    .glass-panel {
+        @apply bg-glass border border-glass-border rounded-xl transform-gpu backdrop-blur-md transition-all duration-500;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-panel-hover:hover {
+        @apply bg-glass-hover border-gold/30 -translate-y-2 z-10;
+        box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.5), 0 0 30px 0 rgba(255, 215, 0, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+    }
+
+    /* Section Headings */
+    .section-subtitle {
+        @apply text-gold font-mono uppercase tracking-[0.3em] text-xs font-bold mb-4 flex items-center gap-4;
+    }
+
+    .section-subtitle::before,
+    .section-subtitle::after {
+        content: '';
+        @apply h-[1px] w-8 bg-gold/50;
+    }
+
+    .section-title {
+        @apply text-4xl md:text-5xl lg:text-6xl font-black font-heading tracking-tight mb-8 leading-[1.1];
+    }
+}
+
+@layer utilities {
+    .text-stroke-gold {
+        -webkit-text-stroke: 1px rgba(255, 215, 0, 0.4);
+    }
+
+    .text-stroke-cyan {
+        -webkit-text-stroke: 1px rgba(102, 252, 241, 0.4);
+    }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-zinc-900;
+    @apply bg-obsidian;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-zinc-700 hover:bg-gold rounded;
-}
-
-:root {
-  /* Colors - keeping CSS vars for vanilla usage where needed */
-  --color-black: #050505;
-  --color-dark-grey: #1a1a1a;
-  --color-light-grey: #e5e5e5;
-  --color-white: #ffffff;
-  --color-gold: #FFB800;
-  --color-gold-hover: #e0a300;
-
-  /* Typography */
-  --font-primary: 'Inter', sans-serif;
-  --font-heading: 'Montserrat', sans-serif;
-}
-
-body {
-  @apply bg-zinc-50 text-zinc-900 transition-colors duration-300 antialiased font-body;
-}
-
-.dark body {
-  @apply bg-black text-white;
-}
-
-#root {
-  min-height: 100vh;
-}
-
-/* Custom Utilities via standard CSS alongside Tailwind */
-.btn {
-  @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded transition-all duration-300 uppercase tracking-wider;
-}
-
-.btn-primary {
-  @apply bg-gold text-black hover:bg-gold-hover hover:-translate-y-0.5;
-}
-
-.btn-outline {
-  @apply bg-transparent border-2 border-white text-white hover:bg-white hover:text-black;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-black;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-zinc-800 rounded;
+    @apply bg-zinc-800 rounded-full border-2 border-obsidian transition-colors duration-300;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gold;
+    @apply bg-gold/50;
 }

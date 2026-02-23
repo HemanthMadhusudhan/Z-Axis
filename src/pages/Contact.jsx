@@ -2,12 +2,11 @@ import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
         name: '',
+        phone: '',
         email: '',
         subject: '',
         message: ''
@@ -26,19 +25,24 @@ const Contact = () => {
         setLoading(true);
         setStatus({ type: '', message: '' });
 
-        emailjs.sendForm(
+        emailjs.send(
             import.meta.env.VITE_EMAILJS_SERVICE_ID,
             import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-            form.current,
+            {
+                name: formData.name,
+                email: formData.email,
+                subject: formData.subject,
+                message: `Phone Number: ${formData.phone}\n\nClient Message:\n${formData.message}`
+            },
             import.meta.env.VITE_EMAILJS_PUBLIC_KEY
         )
             .then((result) => {
                 console.log(result.text);
-                setStatus({ type: 'success', message: 'Thank you! Your message has been sent successfully.' });
-                setFormData({ name: '', email: '', subject: '', message: '' });
+                setStatus({ type: 'success', message: 'Message securely transmitted to our engineering team.' });
+                setFormData({ name: '', phone: '', email: '', subject: '', message: '' });
             }, (error) => {
                 console.log(error.text);
-                setStatus({ type: 'error', message: 'Oops! Something went wrong. Please try again later.' });
+                setStatus({ type: 'error', message: 'Transmission failed. Please verify connection and retry.' });
             })
             .finally(() => {
                 setLoading(false);
@@ -46,42 +50,53 @@ const Contact = () => {
     };
 
     return (
-        <div className="pt-20">
+        <div className="pt-24 bg-obsidian min-h-screen relative">
+            {/* Background elements - Optimized with radial gradients */}
+            <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan/10 via-transparent to-transparent pointer-events-none transform-gpu"></div>
+            <div className="absolute bottom-0 left-0 w-[600px] h-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold/10 via-transparent to-transparent pointer-events-none transform-gpu"></div>
+
             {/* Page Header */}
-            <section className="bg-zinc-900 py-20 relative overflow-hidden">
-                <div className="container mx-auto px-4 relative z-10">
+            <section className="py-20 relative overflow-hidden border-b border-glass-border">
+                <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center">
+                    <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-gold uppercase tracking-[0.3em] font-bold text-sm mb-6"
+                    >
+                        Connect
+                    </motion.p>
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-6xl font-bold font-heading mb-4"
+                        transition={{ delay: 0.1 }}
+                        className="text-5xl md:text-7xl font-black font-heading tracking-tight text-white mb-6"
                     >
-                        Contact <span className="text-gold">Us</span>
+                        Initiate a <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-600">Project</span>
                     </motion.h1>
-                    <div className="h-1 w-20 bg-gold"></div>
                 </div>
             </section>
 
             {/* Contact Content */}
-            <section className="py-20 bg-black">
-                <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <section className="py-32 relative z-10">
+                <div className="container mx-auto px-4 lg:px-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
 
                         {/* Contact Info */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 }}
+                            className="lg:col-span-5"
                         >
-                            <h2 className="text-3xl font-bold font-heading mb-8">Get in <span className="text-gold">Touch</span></h2>
-                            <p className="text-gray-400 mb-10 leading-relaxed">
-                                Have a project in mind or need a quote? We'd love to hear from you.
-                                Our team is ready to provide precise solutions for your manufacturing needs.
+                            <h2 className="section-title text-white mb-6">Direct <span className="text-gold">Line</span></h2>
+                            <p className="text-slate-400 mb-12 leading-relaxed font-light text-lg">
+                                Engineering solutions for complex geometries and critical tolerances. Connect with our technical team to discuss your operational requirements.
                             </p>
 
-                            <div className="space-y-8">
+                            <div className="space-y-6">
                                 <ContactDetail
                                     icon={<MapPin size={24} />}
-                                    title="Visit Us"
+                                    title="Location"
                                     content="Survey No 91 Vanijya Malige, Hosahudya Village Bashettihalli Factory Circle, Bangalore Rural 561203"
                                     isLink={true}
                                     href="https://maps.app.goo.gl/sPz1Crf1nuBjcjLj9"
@@ -89,14 +104,14 @@ const Contact = () => {
                                 />
                                 <ContactDetail
                                     icon={<Phone size={24} />}
-                                    title="Call Us"
+                                    title="Technical Support"
                                     content="+91 9741930919"
                                     isLink={true}
                                     href="tel:+919741930919"
                                 />
                                 <ContactDetail
                                     icon={<Mail size={24} />}
-                                    title="Email Us"
+                                    title="Project Inquiries"
                                     content="zaxiscadcamcnc@gmail.com"
                                     isLink={true}
                                     href="mailto:zaxiscadcamcnc@gmail.com"
@@ -104,21 +119,22 @@ const Contact = () => {
                             </div>
 
                             {/* Google Map Integration */}
-                            <div className="mt-12 w-full h-80 bg-zinc-900 rounded-lg overflow-hidden relative group border border-zinc-800">
-                                <iframe
-                                    title="Z-Axis Location"
-                                    width="100%"
-                                    height="100%"
-                                    frameBorder="0"
-                                    scrolling="no"
-                                    marginHeight="0"
-                                    marginWidth="0"
-                                    src="https://maps.google.com/maps?q=Z-Axis%20CAD%20CAM%20CNC%2C%20Survey%20No%2091%20Vanijya%20Malige%2C%20Hosahudya%20Village%20Bashettihalli%2C%20Karnataka%20561203&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                                    className="filter grayscale hover:grayscale-0 transition-all duration-500"
-                                ></iframe>
-
-                                {/* Overlay to open external link on click (optional, acts as a cover if we want the whole area clickable) */}
-                                {/* <a href="https://share.google/jzRRpbScwFH5Iyb9l" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 block" aria-label="Open in Google Maps"></a> */}
+                            <div className="mt-12 w-full h-64 glass-panel p-2 rotate-1 hover:rotate-0 transition-transform duration-700">
+                                <div className="relative rounded-lg overflow-hidden h-full group w-full border border-glass-border">
+                                    <iframe
+                                        title="Z-Axis Location"
+                                        width="100%"
+                                        height="100%"
+                                        frameBorder="0"
+                                        scrolling="no"
+                                        marginHeight="0"
+                                        marginWidth="0"
+                                        src="https://maps.google.com/maps?q=Z-Axis%20CAD%20CAM%20CNC%2C%20Survey%20No%2091%20Vanijya%20Malige%2C%20Hosahudya%20Village%20Bashettihalli%2C%20Karnataka%20561203&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                        className="filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 absolute inset-0"
+                                    ></iframe>
+                                    {/* Overlay that disappears on hover - Removed heavy mix-blend-mode */}
+                                    <div className="absolute inset-0 bg-obsidian/40 pointer-events-none group-hover:opacity-0 transition-opacity duration-700 transform-gpu"></div>
+                                </div>
                             </div>
                         </motion.div>
 
@@ -127,80 +143,123 @@ const Contact = () => {
                             initial={{ opacity: 0, x: 30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.4 }}
-                            className="bg-zinc-900 p-8 md:p-12 rounded-lg border border-zinc-800"
+                            className="lg:col-span-7"
                         >
-                            <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+                            <div className="glass-panel p-8 md:p-12 relative overflow-hidden">
+                                {/* Form decorative elements */}
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-bl-[100px] border-b border-l border-gold/20"></div>
 
-                            {status.message && (
-                                <div className={`p-4 rounded mb-6 ${status.type === 'success' ? 'bg-green-900/50 text-green-200 border border-green-800' : 'bg-red-900/50 text-red-200 border border-red-800'}`}>
-                                    {status.message}
-                                </div>
-                            )}
+                                <h3 className="text-3xl font-bold mb-8 font-heading text-white relative z-10">Contact Us</h3>
 
-                            <form ref={form} onSubmit={handleSubmit} className="space-y-6">
-                                <div>
-                                    <label htmlFor="name" className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wider">Name</label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full bg-black border border-zinc-700 text-white p-4 rounded focus:outline-none focus:border-gold transition-colors"
-                                        placeholder="Your Name"
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="email" className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wider">Email</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full bg-black border border-zinc-700 text-white p-4 rounded focus:outline-none focus:border-gold transition-colors"
-                                        placeholder="your.email@example.com"
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="subject" className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wider">Subject</label>
-                                    <input
-                                        type="text"
-                                        id="subject"
-                                        name="subject"
-                                        value={formData.subject}
-                                        onChange={handleChange}
-                                        className="w-full bg-black border border-zinc-700 text-white p-4 rounded focus:outline-none focus:border-gold transition-colors"
-                                        placeholder="Inquiry about..."
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="message" className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wider">Message</label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        required
-                                        rows="5"
-                                        className="w-full bg-black border border-zinc-700 text-white p-4 rounded focus:outline-none focus:border-gold transition-colors resize-none"
-                                        placeholder="How can we help you?"
-                                    ></textarea>
-                                </div>
-                                <button
-                                    type="submit"
-                                    disabled={loading}
-                                    className="w-full btn btn-primary flex justify-center items-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
-                                >
-                                    {loading ? (
-                                        <>Sending... <Loader2 size={18} className="animate-spin" /></>
-                                    ) : (
-                                        <>Send Message <Send size={18} className="group-hover:translate-x-1 transition-transform" /></>
-                                    )}
-                                </button>
-                            </form>
+                                {status.message && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className={`p-4 rounded-xl mb-8 border backdrop-blur-md flex items-center gap-3 relative z-10 ${status.type === 'success'
+                                            ? 'bg-green-900/20 text-green-400 border-green-500/30'
+                                            : 'bg-red-900/20 text-red-400 border-red-500/30'
+                                            }`}
+                                    >
+                                        <div className={`w-2 h-2 rounded-full ${status.type === 'success' ? 'bg-green-400' : 'bg-red-400'} animate-pulse`}></div>
+                                        <p className="font-mono text-sm">{status.message}</p>
+                                    </motion.div>
+                                )}
+
+                                <form ref={form} onSubmit={handleSubmit} className="space-y-6 relative z-10">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="relative group">
+                                            <input
+                                                type="text"
+                                                id="name"
+                                                name="name"
+                                                value={formData.name}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full bg-obsidian/50 border border-glass-border text-white px-5 py-4 rounded-xl focus:outline-none focus:border-gold focus:bg-obsidian/80 transition-all peer placeholder-transparent"
+                                                placeholder="Name"
+                                            />
+                                            <label htmlFor="name" className="absolute left-5 top-4 text-slate-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-gold peer-valid:-top-2 peer-valid:text-xs bg-obsidian/80 px-1 rounded">
+                                                Name
+                                            </label>
+                                        </div>
+                                        <div className="relative group">
+                                            <input
+                                                type="tel"
+                                                id="phone"
+                                                name="phone"
+                                                value={formData.phone}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full bg-obsidian/50 border border-glass-border text-white px-5 py-4 rounded-xl focus:outline-none focus:border-gold focus:bg-obsidian/80 transition-all peer placeholder-transparent"
+                                                placeholder="Phone Number"
+                                            />
+                                            <label htmlFor="phone" className="absolute left-5 top-4 text-slate-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-gold peer-valid:-top-2 peer-valid:text-xs bg-obsidian/80 px-1 rounded">
+                                                Phone Number
+                                            </label>
+                                        </div>
+                                        <div className="relative group">
+                                            <input
+                                                type="email"
+                                                id="email"
+                                                name="email"
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full bg-obsidian/50 border border-glass-border text-white px-5 py-4 rounded-xl focus:outline-none focus:border-gold focus:bg-obsidian/80 transition-all peer placeholder-transparent"
+                                                placeholder="Email"
+                                            />
+                                            <label htmlFor="email" className="absolute left-5 top-4 text-slate-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-gold peer-valid:-top-2 peer-valid:text-xs bg-obsidian/80 px-1 rounded">
+                                                Email
+                                            </label>
+                                        </div>
+                                        <div className="relative group">
+                                            <input
+                                                type="text"
+                                                id="subject"
+                                                name="subject"
+                                                value={formData.subject}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full bg-obsidian/50 border border-glass-border text-white px-5 py-4 rounded-xl focus:outline-none focus:border-gold focus:bg-obsidian/80 transition-all peer placeholder-transparent"
+                                                placeholder="Project Details"
+                                            />
+                                            <label htmlFor="subject" className="absolute left-5 top-4 text-slate-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-gold peer-valid:-top-2 peer-valid:text-xs bg-obsidian/80 px-1 rounded">
+                                                Project Details
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="relative group mt-6">
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            required
+                                            rows="5"
+                                            className="w-full bg-obsidian/50 border border-glass-border text-white px-5 py-4 rounded-xl focus:outline-none focus:border-gold focus:bg-obsidian/80 transition-all peer placeholder-transparent resize-none"
+                                            placeholder="Message Details"
+                                        ></textarea>
+                                        <label htmlFor="message" className="absolute left-5 top-4 text-slate-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-gold peer-valid:-top-2 peer-valid:text-xs bg-obsidian/80 px-1 rounded">
+                                            Specification Details
+                                        </label>
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        disabled={loading}
+                                        className="w-full btn btn-primary flex justify-center items-center gap-3 group disabled:opacity-70 disabled:cursor-not-allowed mt-4 py-4 rounded-xl"
+                                    >
+                                        {loading ? (
+                                            <>Sending <Loader2 size={18} className="animate-spin" /></>
+                                        ) : (
+                                            <>
+                                                <span>Send your information</span>
+                                                <Send size={18} className="group-hover:translate-x-2 transition-transform duration-300" />
+                                            </>
+                                        )}
+                                    </button>
+                                </form>
+                            </div>
                         </motion.div>
 
                     </div>
@@ -211,23 +270,23 @@ const Contact = () => {
 };
 
 const ContactDetail = ({ icon, title, content, isLink, href, target }) => (
-    <div className="flex items-start gap-4">
-        <div className="w-12 h-12 bg-zinc-800 rounded flex items-center justify-center text-gold shrink-0">
+    <div className="flex items-start gap-6 group glass-panel p-5 hover:border-gold/30 hover:bg-glass-hover transition-all duration-300 w-full">
+        <div className="w-14 h-14 bg-obsidian border border-glass-border rounded-xl flex items-center justify-center text-slate-400 shrink-0 group-hover:text-gold group-hover:border-gold/30 transition-all duration-300">
             {icon}
         </div>
-        <div>
-            <h4 className="font-bold text-white text-lg">{title}</h4>
+        <div className="flex-1">
+            <h4 className="font-mono text-xs text-gold uppercase tracking-[0.2em] mb-1 font-bold">{title}</h4>
             {isLink ? (
                 <a
                     href={href}
                     target={target || "_self"}
                     rel={target === "_blank" ? "noopener noreferrer" : ""}
-                    className="text-gray-400 hover:text-gold transition-colors block mt-1"
+                    className="text-white hover:text-cyan transition-colors block leading-relaxed font-light"
                 >
                     {content}
                 </a>
             ) : (
-                <p className="text-gray-400 mt-1">{content}</p>
+                <p className="text-white leading-relaxed font-light">{content}</p>
             )}
         </div>
     </div>

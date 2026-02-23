@@ -1,76 +1,162 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Settings, PenTool, Layout, ChevronRight, ArrowRight } from 'lucide-react';
-import servicesBg from '../../assets/hero-industrial.png';
+import { Settings, PenTool, Layout, ArrowRight, Zap, Combine, Cpu } from 'lucide-react';
 
 const ServicesSection = () => {
     const services = [
         {
             icon: <PenTool size={32} />,
             title: "Designing & Development",
-            desc: "Innovating tomorrow, today with comprehensive design solutions."
+            desc: "Innovating tomorrow with comprehensive, engineering-led design solutions."
         },
         {
             icon: <Settings size={32} />,
             title: "CNC Machining",
-            desc: "Unmatched precision, engineered to perfection."
+            desc: "Unmatched precision down to the micron, engineered to perfection."
+        },
+        {
+            icon: <Combine size={32} />,
+            title: "Assembly Integration",
+            desc: "Seamless assembly of complex components for turnkey delivery."
         },
         {
             icon: <Layout size={32} />,
-            title: "Prototyping & Fabrication",
-            desc: "Bringing concepts to life with rapid prototyping and expert fabrication."
+            title: "Prototyping & Fab",
+            desc: "Bringing concepts to life rapidly with expert fabrication methodologies."
         }
     ];
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.15
+            }
+        }
+    };
+
+    const cardVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, ease: "easeOut" }
+        }
+    };
+
     return (
-        <section className="py-24 bg-black relative">
-            {/* Background Image with heavy overlay */}
-            {/* Background Image with heavy overlay */}
-            {/* Background Image with heavy overlay */}
-            <div className="absolute inset-0 z-0">
-                <img src={servicesBg} alt="Services Background" className="w-full h-full object-cover opacity-20" />
-                <div className="absolute inset-0 bg-zinc-950/90"></div>
-                <div className="absolute inset-0 bg-gradient-to-tr from-zinc-950/50 to-transparent"></div>
+        <section className="py-20 lg:py-32 bg-obsidian relative overflow-hidden">
+            {/* Background elements - Optimized with radial gradient instead of blur */}
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-electric-blue/5 via-transparent to-transparent rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none transform-gpu"></div>
+
+            {/* Dynamic Animated Separator filling the empty space - INFINITE LOOP (No useScroll) */}
+            <div className="absolute top-0 left-0 w-full h-32 flex flex-col justify-center opacity-40 pointer-events-none overflow-hidden select-none">
+                <motion.div
+                    animate={{ x: ["0%", "-50%"] }}
+                    transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+                    className="flex whitespace-nowrap gap-8 items-center"
+                >
+                    {[...Array(10)].map((_, i) => (
+                        <React.Fragment key={`top-${i}`}>
+                            <span className="text-4xl font-heading font-black text-transparent text-stroke-gold uppercase tracking-widest opacity-20">Precision Engineering</span>
+                            <span className="w-12 h-[1px] bg-gold/30 block"></span>
+                            <span className="w-3 h-3 rotate-45 border border-gold/50 block"></span>
+                            <span className="w-12 h-[1px] bg-gold/30 block"></span>
+                        </React.Fragment>
+                    ))}
+                </motion.div>
+                <motion.div
+                    animate={{ x: ["-50%", "0%"] }}
+                    transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
+                    className="flex whitespace-nowrap gap-8 items-center mt-4"
+                >
+                    {[...Array(10)].map((_, i) => (
+                        <React.Fragment key={`bottom-${i}`}>
+                            <span className="w-8 h-[1px] bg-cyan/30 block"></span>
+                            <span className="w-2 h-2 rounded-full bg-cyan/20 block"></span>
+                            <span className="w-8 h-[1px] bg-cyan/30 block"></span>
+                            <span className="text-4xl font-heading font-black text-transparent text-stroke-cyan uppercase tracking-widest opacity-10">Advanced Manufacturing</span>
+                        </React.Fragment>
+                    ))}
+                </motion.div>
             </div>
 
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-                    <div>
-                        <h4 className="text-gold font-bold uppercase tracking-widest mb-2">Our Capabilities</h4>
-                        <h2 className="text-4xl md:text-5xl font-bold font-heading text-white">
-                            Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Precision</span>
+
+            <div className="container mx-auto px-4 lg:px-8 relative z-10 mt-16">
+                <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.8 }}
+                        className="max-w-2xl transform-gpu"
+                    >
+                        <h4 className="section-subtitle">Core Capabilities</h4>
+                        <h2 className="section-title mb-0">
+                            Uncompromising <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-blue-500">Quality.</span>
                         </h2>
-                    </div>
-                    <Link to="/services" className="hidden md:flex items-center text-white hover:text-gold transition-colors font-bold uppercase tracking-wider mt-6 md:mt-0">
-                        View All Services <ArrowRight className="ml-2" />
-                    </Link>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="transform-gpu"
+                    >
+                        <Link to="/services" className="hidden md:inline-flex items-center gap-3 text-slate-300 hover:text-cyan transition-colors font-bold uppercase tracking-widest text-sm group">
+                            Explore All Services
+                            <span className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center group-hover:border-cyan group-hover:bg-cyan/10 transition-all duration-300">
+                                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                            </span>
+                        </Link>
+                    </motion.div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                >
                     {services.map((service, index) => (
                         <motion.div
+                            variants={cardVariants}
                             key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.2 }}
-                            className="bg-zinc-900 p-8 rounded border-t-4 border-transparent hover:border-gold transition-all duration-300 hover:-translate-y-2 group"
+                            className="glass-panel p-8 glass-panel-hover group relative overflow-hidden flex flex-col h-full min-h-[320px] transform-gpu"
                         >
-                            <div className="mb-6 text-gray-400 group-hover:text-gold transition-colors">
-                                {service.icon}
+                            {/* Hover Gradient Background */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-cyan/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                            {/* Animated Top Border */}
+                            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
+
+                            {/* Shimmer on Hover */}
+                            <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_2s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12 pointer-events-none"></div>
+
+                            <div className="mb-auto relative z-10">
+                                <div className="w-16 h-16 rounded-xl bg-obsidian border border-glass-border flex items-center justify-center text-slate-400 group-hover:text-cyan group-hover:shadow-[0_0_20px_rgba(102,252,241,0.2)] group-hover:animate-pulse-glow transition-all duration-500 mb-8">
+                                    {service.icon}
+                                </div>
+                                <h3 className="text-xl font-bold text-white mb-4 font-heading leading-tight group-hover:text-cyan transition-colors">{service.title}</h3>
+                                <p className="text-slate-400 font-light leading-relaxed">{service.desc}</p>
                             </div>
-                            <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-                            <p className="text-gray-400 mb-6">{service.desc}</p>
-                            <Link to="/services" className="text-sm font-bold uppercase tracking-widest text-white group-hover:text-gold flex items-center">
-                                Learn More <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                            </Link>
+
+                            <div className="mt-8 pt-6 border-t border-glass-border/50 relative z-10">
+                                <Link to="/services" className="text-xs font-bold uppercase tracking-widest text-slate-300 group-hover:text-cyan flex items-center gap-2">
+                                    Learn More <ArrowRight size={14} className="-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300" />
+                                </Link>
+                            </div>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
 
                 <div className="mt-12 text-center md:hidden">
-                    <Link to="/services" className="btn btn-outline w-full">View All Services</Link>
+                    <Link to="/services" className="btn btn-outline w-full text-cyan border-cyan hover:bg-cyan hover:text-obsidian">View All Services</Link>
                 </div>
             </div>
         </section>
