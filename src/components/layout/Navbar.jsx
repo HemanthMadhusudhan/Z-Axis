@@ -53,10 +53,10 @@ const Navbar = () => {
               <img src={logo} alt="Z-AXIS" className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_8px_rgba(255,215,0,0.3)]" />
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl font-black tracking-tighter text-white group-hover:text-gold transition-colors duration-500">
+              <span className="text-xl lg:text-2xl font-black tracking-tighter text-white group-hover:text-gold transition-colors duration-500">
                 Z-AXIS
               </span>
-              <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-slate-400 group-hover:text-white transition-colors duration-500">
+              <span className="text-[8px] lg:text-[9px] font-bold tracking-[0.2em] lg:tracking-[0.3em] uppercase text-slate-400 group-hover:text-white transition-colors duration-500">
                 Precision Engineering
               </span>
             </div>
@@ -135,7 +135,7 @@ const Navbar = () => {
                 >
                   <Link
                     to={link.path}
-                    className="text-3xl font-heading font-black uppercase tracking-wider text-slate-300 hover:text-gold transition-colors block text-center"
+                    className="text-[clamp(1.5rem,6vw,2.5rem)] font-heading font-black uppercase tracking-wider text-slate-300 hover:text-gold transition-colors block text-center"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}

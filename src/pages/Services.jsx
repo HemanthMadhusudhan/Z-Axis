@@ -4,13 +4,15 @@ import { Settings, PenTool, Layout, Truck, CheckCircle, CheckSquare } from 'luci
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import outsourcingBg from '../assets/water-cutting-new.jpg';
+import PageMeta from '../components/common/PageMeta';
 
 const Services = () => {
     return (
         <div className="pt-24 bg-obsidian min-h-screen">
+            <PageMeta title="Services | Z-Axis" description="Explore our core capabilities including CNC machining, precision grinding, and product development." />
             {/* Page Header */}
             <section className="py-20 relative overflow-hidden border-b border-glass-border">
-                <div className="absolute top-0 right-1/4 w-[600px] h-[300px] bg-electric-blue/5 blur-[100px] rounded-full pointer-events-none"></div>
+                <div className="absolute top-0 right-1/4 w-[80vw] md:w-[600px] h-[300px] bg-electric-blue/5 blur-[100px] rounded-full pointer-events-none"></div>
                 <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center">
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
@@ -23,7 +25,7 @@ const Services = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-5xl md:text-7xl font-black font-heading tracking-tight text-white"
+                        className="text-[clamp(3rem,8vw,4.5rem)] md:text-7xl font-black font-heading tracking-tight text-white leading-tight"
                     >
                         Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-blue-500">Services</span>
                     </motion.h1>
@@ -60,10 +62,10 @@ const Services = () => {
             </section>
 
             {/* Out Sourcing Work */}
-            <section className="py-32 relative border-y border-glass-border overflow-hidden">
+            <section className="py-20 lg:py-32 relative border-y border-glass-border overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-glass to-transparent opacity-30"></div>
                 <div className="container mx-auto px-4 lg:px-8 relative z-10">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -104,6 +106,7 @@ const Services = () => {
                                     <img
                                         src={outsourcingBg}
                                         alt="Water Cutting Machining"
+                                        loading="lazy"
                                         className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-[2s] ease-out"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-tr from-obsidian/60 to-transparent"></div>

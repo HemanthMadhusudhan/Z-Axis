@@ -4,14 +4,16 @@ import { Cpu, Maximize, Zap, CheckCircle } from 'lucide-react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import specsBg from '../assets/machining-process.png';
+import PageMeta from '../components/common/PageMeta';
 
 const Capabilities = () => {
     return (
         <div className="pt-24 bg-obsidian min-h-screen">
+            <PageMeta title="Capabilities | Z-Axis" description="Detailed technical specifications of our advanced CNC milling fleet, high-volume production, and precision machines." />
             {/* Page Header */}
             <section className="py-20 relative overflow-hidden border-b border-glass-border">
                 {/* Ambient Glow */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90vw] md:w-[700px] h-[300px] bg-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
 
                 <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center">
                     <motion.p
@@ -27,7 +29,7 @@ const Capabilities = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-5xl md:text-7xl font-black font-heading mb-6 tracking-tight text-white"
+                        className="text-[clamp(3rem,8vw,4.5rem)] md:text-7xl font-black font-heading mb-6 tracking-tight text-white leading-[1.1]"
                     >
                         Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-600">Capabilities</span>
                     </motion.h1>
@@ -35,9 +37,9 @@ const Capabilities = () => {
             </section>
 
             {/* Our Workhorse */}
-            <section className="py-20 relative">
+            <section className="py-16 lg:py-20 relative">
                 <div className="container mx-auto px-4 lg:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                         {/* Image Panel */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
@@ -51,6 +53,7 @@ const Capabilities = () => {
                                     <img
                                         src={specsBg}
                                         alt="Technical Precision Equipment"
+                                        loading="lazy"
                                         className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s] ease-out opacity-70"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-tr from-obsidian/90 via-obsidian/40 to-transparent"></div>
@@ -141,10 +144,10 @@ const Capabilities = () => {
                         <table className="w-full text-left min-w-[800px]">
                             <thead>
                                 <tr className="bg-obsidian/80 border-b-2 border-gold/30">
-                                    <th className="p-6 font-bold text-gold uppercase tracking-wider text-sm w-1/4">Parameter</th>
-                                    <th className="p-6 font-bold text-white uppercase tracking-wider text-sm w-1/4 bg-glass">VF-2 Series</th>
-                                    <th className="p-6 font-bold text-white uppercase tracking-wider text-sm w-1/4 border-l border-glass-border">VF-4 Series</th>
-                                    <th className="p-6 font-bold text-white uppercase tracking-wider text-sm w-1/4 border-l border-glass-border">VF-5 Series</th>
+                                    <th className="p-4 md:p-6 font-bold text-gold uppercase tracking-wider text-xs md:text-sm w-1/4">Parameter</th>
+                                    <th className="p-4 md:p-6 font-bold text-white uppercase tracking-wider text-xs md:text-sm w-1/4 bg-glass">VF-2 Series</th>
+                                    <th className="p-4 md:p-6 font-bold text-white uppercase tracking-wider text-xs md:text-sm w-1/4 border-l border-glass-border">VF-4 Series</th>
+                                    <th className="p-4 md:p-6 font-bold text-white uppercase tracking-wider text-xs md:text-sm w-1/4 border-l border-glass-border">VF-5 Series</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-glass-border font-light">

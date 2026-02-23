@@ -110,11 +110,22 @@ const Footer = () => {
                 </div>
 
                 {/* Copyright */}
-                <div className="border-t border-glass-border pt-8 mt-12 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-slate-500 text-xs font-mono uppercase tracking-widest">
-                        &copy; {new Date().getFullYear()} Z-Axis. All rights reserved.
-                    </p>
-                    <p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.2em]">
+                <div className="border-t border-glass-border pt-8 mt-12 flex flex-col xl:flex-row justify-between items-center gap-6 xl:gap-4">
+                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full xl:w-auto">
+                        <p className="text-slate-500 text-xs font-mono uppercase tracking-widest text-center md:text-left">
+                            &copy; {new Date().getFullYear()} Z-Axis. All rights reserved.
+                        </p>
+                        <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-xs font-medium text-slate-500">
+                            <Link to="/privacy-policy" className="hover:text-gold transition-colors">Privacy Policy</Link>
+                            <span className="hidden md:inline text-glass-border">|</span>
+                            <Link to="/terms-conditions" className="hover:text-gold transition-colors">Terms &amp; Conditions</Link>
+                            <span className="hidden md:inline text-glass-border">|</span>
+                            <Link to="/cookie-policy" className="hover:text-gold transition-colors">Cookie Policy</Link>
+                            <span className="hidden md:inline text-glass-border">|</span>
+                            <Link to="/disclaimer" className="hover:text-gold transition-colors">Disclaimer</Link>
+                        </div>
+                    </div>
+                    <p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.2em] whitespace-nowrap">
                         Designed for <span className="text-gold">Excellence</span>
                     </p>
                 </div>

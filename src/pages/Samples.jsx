@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import headerBg from '../assets/precision-parts.png';
+import PageMeta from '../components/common/PageMeta';
 
 import sample1 from '../assets/sample-1.jpg';
 import sample2 from '../assets/sample-2.jpg';
@@ -24,16 +25,17 @@ const Samples = () => {
 
     return (
         <div className="pt-20 min-h-screen flex flex-col bg-zinc-50 dark:bg-black transition-colors duration-300">
+            <PageMeta title="Projects & Samples | Z-Axis" description="A gallery of precision parts, complex machining samples, and engineering excellence by Z-Axis." />
             {/* Page Header */}
             <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center overflow-hidden">
-                <img src={headerBg} alt="Precision Parts" className="absolute inset-0 w-full h-full object-cover" />
+                <img src={headerBg} alt="Precision Parts" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-black/60"></div>
 
                 <div className="relative z-10 text-center px-4">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-6xl font-black font-heading text-white mb-4"
+                        className="text-[clamp(2.5rem,8vw,4rem)] md:text-6xl font-black font-heading text-white mb-4 leading-tight"
                     >
                         Our <span className="text-gold">Work</span>
                     </motion.h1>
@@ -67,6 +69,7 @@ const Samples = () => {
                                         src={sample.image}
                                         alt={sample.title}
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        loading="lazy"
                                         onError={(e) => {
                                             e.target.style.display = 'none';
                                             e.target.nextElementSibling.style.display = 'flex';

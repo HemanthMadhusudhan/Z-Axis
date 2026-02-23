@@ -76,24 +76,31 @@
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
     }
 
-    .glass-panel-hover:hover {
-        @apply bg-glass-hover border-gold/30 -translate-y-2 z-10;
-        box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.5), 0 0 30px 0 rgba(255, 215, 0, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+    .glass-panel-hover {
+        @apply transition-all duration-500;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .glass-panel-hover:hover {
+            @apply bg-glass-hover border-gold/30 -translate-y-2 z-10;
+            box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.5), 0 0 30px 0 rgba(255, 215, 0, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+        }
     }
 
     /* Section Headings */
     .section-subtitle {
-        @apply text-gold font-mono uppercase tracking-[0.3em] text-xs font-bold mb-4 flex items-center gap-4;
+        @apply text-gold font-mono uppercase tracking-[0.2em] md:tracking-[0.3em] text-[10px] md:text-xs font-bold mb-4 flex flex-wrap items-center gap-2 md:gap-4;
     }
 
     .section-subtitle::before,
     .section-subtitle::after {
         content: '';
-        @apply h-[1px] w-8 bg-gold/50;
+        @apply h-[1px] w-6 md:w-8 bg-gold/50;
     }
 
     .section-title {
-        @apply text-4xl md:text-5xl lg:text-6xl font-black font-heading tracking-tight mb-8 leading-[1.1];
+        @apply font-black font-heading tracking-tight mb-6 md:mb-8 leading-[1.2] md:leading-[1.1];
+        font-size: clamp(2.25rem, 5vw + 1rem, 3.75rem);
     }
 }
 

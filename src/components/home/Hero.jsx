@@ -98,7 +98,7 @@ const Hero = () => {
                     <span className="text-gold uppercase tracking-[0.25em] text-[10px] font-bold drop-shadow-md">The Future of Manufacturing</span>
                 </motion.div>
 
-                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[8rem] font-black mb-6 font-heading text-white leading-[0.9] tracking-tighter transform-gpu">
+                <h1 className="text-[clamp(2.5rem,10vw,8rem)] font-black mb-6 font-heading text-white leading-[0.9] tracking-tighter transform-gpu">
                     <motion.div
                         custom={2}
                         initial="hidden"

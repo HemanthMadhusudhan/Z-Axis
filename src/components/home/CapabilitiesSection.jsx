@@ -79,11 +79,11 @@ const CapabilitiesSection = () => {
 };
 
 const StatBox = ({ label, value }) => (
-    <div className="glass-panel glass-panel-hover p-6 border border-glass-border/50 transition-all duration-500 transform-gpu relative overflow-hidden cursor-default group/stat">
-        {/* Subtle hover gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-gold/5 to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity duration-500"></div>
-        <div className="text-3xl font-black font-heading text-white mb-2 group-hover/stat:text-gold group-hover/stat:animate-pulse-glow transition-colors relative z-10">{value}</div>
-        <div className="text-[10px] text-slate-400 font-mono uppercase tracking-[0.2em] relative z-10">{label}</div>
+    <div className="glass-panel glass-panel-hover p-3 lg:p-6 border border-glass-border/50 transition-all duration-500 transform-gpu relative overflow-hidden cursor-default group/stat flex flex-col items-center justify-center text-center !min-h-[100px]">
+        {/* Subtle hover gradient - restricted to large screens */}
+        <div className="absolute inset-0 bg-gradient-to-t from-gold/5 to-transparent opacity-0 lg:group-hover/stat:opacity-100 transition-opacity duration-500"></div>
+        <div className="text-[clamp(1.25rem,4vw,1.875rem)] lg:text-3xl font-black font-heading text-white mb-1 lg:mb-2 lg:group-hover/stat:text-gold lg:group-hover/stat:animate-pulse-glow transition-colors relative z-10 w-full min-w-0 break-words leading-tight">{value}</div>
+        <div className="text-[9px] lg:text-[10px] text-slate-400 font-mono uppercase tracking-[0.1em] lg:tracking-[0.2em] relative z-10 w-full min-w-0 break-words">{label}</div>
     </div>
 );
 

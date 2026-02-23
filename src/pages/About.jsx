@@ -2,10 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, ArrowRight } from 'lucide-react';
 import missionImg from '../assets/cnc-action.png';
+import PageMeta from '../components/common/PageMeta';
 
 const About = () => {
     return (
         <div className="pt-24 bg-obsidian min-h-screen">
+            <PageMeta title="Our Story | Z-Axis" description="Learn about Z-Axis's journey, mission, and commitment to precision manufacturing excellence." />
             {/* Page Header */}
             <section className="py-20 relative overflow-hidden border-b border-glass-border">
                 {/* Background ambient glow */}
@@ -23,7 +25,7 @@ const About = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-5xl md:text-7xl font-black font-heading mb-6 tracking-tight text-white"
+                        className="text-[clamp(3rem,8vw,4.5rem)] md:text-7xl font-black font-heading mb-6 tracking-tight text-white leading-[1.1]"
                     >
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-600">Built</span> on Excellence,<br /> Driven by <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-blue-500">Innovation.</span>
                     </motion.h1>
@@ -33,7 +35,7 @@ const About = () => {
             {/* Main Content */}
             <section className="py-20 lg:py-32 relative">
                 <div className="container mx-auto px-4 lg:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-32">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center mb-16 lg:mb-32">
                         {/* Text Content */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
@@ -82,6 +84,7 @@ const About = () => {
                                     <img
                                         src={missionImg}
                                         alt="Z-Axis Manufacturing Facility"
+                                        loading="lazy"
                                         className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s] ease-out opacity-80"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/20 to-transparent"></div>

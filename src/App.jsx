@@ -7,6 +7,10 @@ import Services from './pages/Services';
 import Capabilities from './pages/Capabilities';
 import Samples from './pages/Samples';
 import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsConditions from './pages/TermsConditions';
+import CookiePolicy from './pages/CookiePolicy';
+import Disclaimer from './pages/Disclaimer';
 import ScrollToTop from './components/layout/ScrollToTop';
 
 function App() {
@@ -22,6 +26,10 @@ function App() {
             <Route path="/capabilities" element={<Capabilities />} />
             <Route path="/samples" element={<Samples />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-conditions" element={<TermsConditions />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
+            <Route path="/disclaimer" element={<Disclaimer />} />
           </Routes>
         </Layout>
       </Router>

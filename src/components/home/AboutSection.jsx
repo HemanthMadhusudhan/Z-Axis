@@ -51,8 +51,8 @@ const AboutSection = () => {
                         <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_2.5s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12 pointer-events-none z-0"></div>
 
                         <div className="relative z-10">
-                            <h3 className="text-3xl lg:text-4xl font-heading font-bold text-white mb-6">Mastering the Art of <br />Industrial Precision.</h3>
-                            <p className="text-slate-400 text-lg mb-8 leading-relaxed font-light">
+                            <h3 className="text-[clamp(2rem,4vw,2.5rem)] font-heading font-bold text-white mb-6 leading-tight">Mastering the Art of <br />Industrial Precision.</h3>
+                            <p className="text-slate-400 text-[clamp(1rem,2vw,1.125rem)] mb-8 leading-relaxed font-light">
                                 Since our inception, Z-Axis has been dedicated to excellence in manufacturing.
                                 We don't just machine parts; we engineer solutions. As pioneers in the design
                                 and development of complex fixturing, we are the trusted backbone for industry
@@ -99,6 +99,7 @@ const AboutSection = () => {
                         <img
                             src={aboutBg}
                             alt="Precision Machining Facility"
+                            loading="lazy"
                             className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-1000 ease-out transform-gpu"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent"></div>

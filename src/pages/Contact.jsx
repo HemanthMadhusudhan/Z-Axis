@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import PageMeta from '../components/common/PageMeta';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -51,9 +52,10 @@ const Contact = () => {
 
     return (
         <div className="pt-24 bg-obsidian min-h-screen relative">
+            <PageMeta title="Contact Us | Z-Axis" description="Connect with our technical team to discuss your operational requirements, precision machining needs, or to initiate a project." />
             {/* Background elements - Optimized with radial gradients */}
-            <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan/10 via-transparent to-transparent pointer-events-none transform-gpu"></div>
-            <div className="absolute bottom-0 left-0 w-[600px] h-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold/10 via-transparent to-transparent pointer-events-none transform-gpu"></div>
+            <div className="absolute top-1/4 right-0 w-[80vw] h-[80vw] md:w-[500px] md:h-[500px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan/10 via-transparent to-transparent pointer-events-none transform-gpu"></div>
+            <div className="absolute bottom-0 left-0 w-[90vw] h-[60vw] md:w-[600px] md:h-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold/10 via-transparent to-transparent pointer-events-none transform-gpu"></div>
 
             {/* Page Header */}
             <section className="py-20 relative overflow-hidden border-b border-glass-border">
@@ -65,23 +67,23 @@ const Contact = () => {
                     >
                         Connect
                     </motion.p>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-5xl md:text-7xl font-black font-heading tracking-tight text-white mb-6"
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="text-left"
                     >
-                        Initiate a <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-600">Project</span>
-                    </motion.h1>
+                        <h1 className="text-[clamp(2.5rem,8vw,4.5rem)] md:text-7xl font-black font-heading tracking-tight text-white mb-6 leading-[1.1]">
+                            Let's Build <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-blue-500">Together.</span>
+                        </h1>
+                    </motion.div>
                 </div>
             </section>
 
             {/* Contact Content */}
-            <section className="py-32 relative z-10">
+            <section className="py-20 relative z-10">
                 <div className="container mx-auto px-4 lg:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
-
-                        {/* Contact Info */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+                        {/* Contact Information */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}

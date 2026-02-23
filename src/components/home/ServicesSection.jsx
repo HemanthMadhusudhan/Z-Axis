@@ -56,28 +56,28 @@ const ServicesSection = () => {
                 <motion.div
                     animate={{ x: ["0%", "-50%"] }}
                     transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
-                    className="flex whitespace-nowrap gap-8 items-center"
+                    className="flex whitespace-nowrap gap-4 md:gap-8 items-center"
                 >
                     {[...Array(10)].map((_, i) => (
                         <React.Fragment key={`top-${i}`}>
-                            <span className="text-4xl font-heading font-black text-transparent text-stroke-gold uppercase tracking-widest opacity-20">Precision Engineering</span>
-                            <span className="w-12 h-[1px] bg-gold/30 block"></span>
-                            <span className="w-3 h-3 rotate-45 border border-gold/50 block"></span>
-                            <span className="w-12 h-[1px] bg-gold/30 block"></span>
+                            <span className="text-2xl md:text-4xl font-heading font-black text-transparent text-stroke-gold uppercase tracking-widest opacity-20">Precision Engineering</span>
+                            <span className="w-8 md:w-12 h-[1px] bg-gold/30 block"></span>
+                            <span className="w-2 md:w-3 h-2 md:h-3 rotate-45 border border-gold/50 block"></span>
+                            <span className="w-8 md:w-12 h-[1px] bg-gold/30 block"></span>
                         </React.Fragment>
                     ))}
                 </motion.div>
                 <motion.div
                     animate={{ x: ["-50%", "0%"] }}
                     transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
-                    className="flex whitespace-nowrap gap-8 items-center mt-4"
+                    className="flex whitespace-nowrap gap-4 md:gap-8 items-center mt-4"
                 >
                     {[...Array(10)].map((_, i) => (
                         <React.Fragment key={`bottom-${i}`}>
-                            <span className="w-8 h-[1px] bg-cyan/30 block"></span>
-                            <span className="w-2 h-2 rounded-full bg-cyan/20 block"></span>
-                            <span className="w-8 h-[1px] bg-cyan/30 block"></span>
-                            <span className="text-4xl font-heading font-black text-transparent text-stroke-cyan uppercase tracking-widest opacity-10">Advanced Manufacturing</span>
+                            <span className="w-6 md:w-8 h-[1px] bg-cyan/30 block"></span>
+                            <span className="w-1 md:w-2 h-1 md:h-2 rounded-full bg-cyan/20 block"></span>
+                            <span className="w-6 md:w-8 h-[1px] bg-cyan/30 block"></span>
+                            <span className="text-2xl md:text-4xl font-heading font-black text-transparent text-stroke-cyan uppercase tracking-widest opacity-10">Advanced Manufacturing</span>
                         </React.Fragment>
                     ))}
                 </motion.div>
@@ -127,7 +127,7 @@ const ServicesSection = () => {
                         <motion.div
                             variants={cardVariants}
                             key={index}
-                            className="glass-panel p-8 glass-panel-hover group relative overflow-hidden flex flex-col h-full min-h-[320px] transform-gpu"
+                            className="glass-panel p-6 md:p-8 glass-panel-hover group relative overflow-hidden flex flex-col h-full min-h-[320px] transform-gpu"
                         >
                             {/* Hover Gradient Background */}
                             <div className="absolute inset-0 bg-gradient-to-br from-cyan/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
